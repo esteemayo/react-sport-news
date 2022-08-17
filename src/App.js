@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { loginInputs, registerInputs } from 'data';
+import { loginInputs, newsInputs, registerInputs } from 'data';
 import {
   About,
   AddNews,
@@ -26,7 +26,7 @@ function App() {
             <Route path='about' element={<About />} />
             <Route path='news' element={<SharedLayout />}>
               <Route index element={<News />} />
-              <Route path='add' element={<AddNews />} />
+              <Route path='add' element={<AddNews newsInputs={newsInputs} />} />
               <Route path=':slug' element={<SingleNews />} />
               <Route path='edit/:id' element={<EditNews />} />
             </Route>
