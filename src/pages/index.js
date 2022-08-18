@@ -9,6 +9,7 @@ import News from './news/News';
 import NotFound from './notFound/NotFound';
 import Register from './register/Register';
 import SharedLayout from './layout/SharedLayout';
+import Search from './search/Search';
 import SingleNews from './singleNews/SingleNews';
 
 export {
@@ -23,5 +24,6 @@ export {
   NotFound,
   Register,
   SharedLayout,
+  Search,
   SingleNews,
 };
