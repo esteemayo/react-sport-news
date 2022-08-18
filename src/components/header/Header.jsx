@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Search from 'components/search/Search';
 import { setLogout } from 'features/auth/authSlice';
 import './header.css';
 
@@ -17,6 +18,7 @@ const Header = () => {
       <div className='logo'>
         <Link to='/'>Sport News</Link>
       </div>
+      <Search />
       <nav>
         <ul>
           <li>
