@@ -9,6 +9,7 @@ import { editNews } from 'features/news/newsSlice';
 import TextArea from 'components/textarea/TextArea';
 import FormInput from 'components/formInput/FormInput';
 import { getEditNewsItem } from 'features/news/newsSlice';
+import FormButton from 'components/formButton/FormButton';
 import ImageUpload from 'components/imageUpload/ImageUpload';
 
 import '../add/form.css';
@@ -106,7 +107,7 @@ const EditNews = () => {
           onChange={handleChange}
         />
 
-        <input type='submit' value='Update News' className='btn' />
+        <FormButton value='Update News' />
       </form>
       {imgPreview ? (
         <img
