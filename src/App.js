@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import AuthRoute from 'utils/AuthRoute';
+import ProtectedRoute from 'utils/ProtectedRoute';
 import { loginInputs, newsInputs, registerInputs } from 'data';
 import {
   About,
@@ -26,20 +28,49 @@ function App() {
             <Route path='about' element={<About />} />
             <Route path='news' element={<SharedLayout />}>
               <Route index element={<News />} />
-              <Route path='add' element={<AddNews newsInputs={newsInputs} />} />
+              <Route
+                path='add'
+                element={
+                  <AuthRoute>
+                    <AddNews newsInputs={newsInputs} />
+                  </AuthRoute>
+                }
+              />
               <Route path=':slug' element={<SingleNews />} />
-              <Route path='edit/:id' element={<EditNews />} />
+              <Route
+                path='edit/:id'
+                element={
+                  <AuthRoute>
+                    <EditNews />
+                  </AuthRoute>
+                }
+              />
             </Route>
             <Route path='auth' element={<SharedLayout />}>
               <Route
                 path='login'
-                element={<Login userInputs={loginInputs} />}
+                element={
+                  <ProtectedRoute>
+                    <Login userInputs={loginInputs} />
+                  </ProtectedRoute>
+                }
               />
               <Route
                 path='register'
-                element={<Register userInputs={registerInputs} />}
+                element={
+                  <ProtectedRoute>
+                    <Register userInputs={registerInputs} />
+                  </ProtectedRoute>
+                }
               />
-              <Route path='dashboard' element={<Dashboard />} />
+              <Route
+                path='dashboard'
+                element={
+                  <AuthRoute>
+                    <Dashboard />
+                  </AuthRoute>
+                }
+              />
             </Route>
             <Route path='*' element={<NotFound />} />
           </Route>
