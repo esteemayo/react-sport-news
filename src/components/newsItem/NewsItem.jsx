@@ -6,7 +6,7 @@ import './newsItem.css';
 
 const NewsItem = ({ name, slug, date, time, user, image }) => {
   return (
-    <div className='news'>
+    <div className='news-item'>
       <div className='img'>
         <img
           src={image ? image : '/images/hero.jpg'}

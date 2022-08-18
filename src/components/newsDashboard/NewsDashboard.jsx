@@ -3,7 +3,7 @@ import './newsDashboard.css';
 
 const NewsDashboard = ({ _id: id, name, slug, onDelete }) => {
   return (
-    <div className='news'>
+    <div className='news-dashboard'>
       <h4>
         <Link to={`/news/${slug}`}>{name}</Link>
       </h4>

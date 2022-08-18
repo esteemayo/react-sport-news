@@ -1,4 +1,4 @@
-.news {
+.news-dashboard {
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
@@ -9,7 +9,7 @@
   justify-content: flex-start;
 }
 
-.news h4 {
+.news-dashboard h4 {
   margin-bottom: 10px;
   flex: 2;
 }

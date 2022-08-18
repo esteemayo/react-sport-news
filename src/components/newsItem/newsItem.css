@@ -1,4 +1,4 @@
-.news {
+.news-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,8 +16,12 @@
   flex: 2;
 }
 
+.info h3 {
+  font-size: 1.17em !important;
+}
+
 @media (max-wdith: 600px) {
-  .news {
+  .news-item {
     flex-direction: column;
     text-align: center;
   }
