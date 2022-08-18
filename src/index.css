@@ -87,3 +87,12 @@ button {
 .btn-secondary:hover {
   opacity: 0.8;
 }
+
+.loading-to-redirect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin-top: 15px;
+  text-transform: none;
+}
