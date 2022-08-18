@@ -15,6 +15,7 @@ import {
   NotFound,
   Register,
   SharedLayout,
+  Search,
   SingleNews,
 } from 'pages';
 
@@ -28,6 +29,7 @@ function App() {
             <Route path='about' element={<About />} />
             <Route path='news' element={<SharedLayout />}>
               <Route index element={<News />} />
+              <Route path='search' element={<Search />} />
               <Route
                 path='add'
                 element={
