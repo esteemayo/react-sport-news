@@ -37,6 +37,18 @@ export const getUserNews = createAsyncThunk(
   }
 );
 
+export const searchNews = createAsyncThunk(
+  'async/searchNews',
+  async (query, { rejectWithValue }) => {
+    try {
+      const { data } = await newsAPI.searchSport(query);
+      return data.sports;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const getEditNewsItem = createAsyncThunk(
   'async/getEditNewsItem',
   async (id, { rejectWithValue }) => {
@@ -136,6 +148,20 @@ export const newsSlice = createSlice({
         state.isError = true;
         state.message = payload;
       })
+      .addCase(searchNews.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(searchNews.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.news = payload;
+      })
+      .addCase(searchNews.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = payload;
+      })
       .addCase(getSingleNews.pending, (state) => {
         state.isLoading = true;
       })
@@ -191,12 +217,8 @@ export const newsSlice = createSlice({
         } = meta;
 
         if (id) {
-          state.news = state.news.map((item) =>
-            item._id === id ? payload : item
-          );
-          state.userNews = state.userNews.map((item) =>
-            item._id === id ? payload : item
-          );
+          state.news.map((item) => (item._id === id ? payload : item));
+          state.userNews.map((item) => (item._id === id ? payload : item));
         }
       })
       .addCase(editNews.rejected, (state, { payload }) => {
@@ -208,7 +230,7 @@ export const newsSlice = createSlice({
       .addCase(deleteNews.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteNews.fulfilled, (state, { meta, payload }) => {
+      .addCase(deleteNews.fulfilled, (state, { meta }) => {
         state.isLoading = false;
         state.isSuccess = true;
 
