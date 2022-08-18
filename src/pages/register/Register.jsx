@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
@@ -6,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Spinner from 'components/spinner/Spinner';
 import FormInput from 'components/formInput/FormInput';
+import FormButton from 'components/formButton/FormButton';
 import { registerUser, reset } from 'features/auth/authSlice';
 
 import '../login/login.css';
@@ -78,13 +80,25 @@ const Register = ({ userInputs }) => {
             />
           );
         })}
-        <input type='submit' value='Register' className='btn' />
+        <FormButton value='Register' />
       </form>
       <p>
         Already have an account? <Link to='/auth/login'>Login</Link>
       </p>
     </div>
   );
+};
+
+Register.propTypes = {
+  userInputs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      placeholder: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default Register;

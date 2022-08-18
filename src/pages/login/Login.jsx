@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +7,7 @@ import { toast } from 'react-toastify';
 
 import Spinner from 'components/spinner/Spinner';
 import FormInput from 'components/formInput/FormInput';
+import FormButton from 'components/formButton/FormButton';
 import { loginUser, reset } from 'features/auth/authSlice';
 
 import './login.css';
@@ -64,13 +66,25 @@ const Login = ({ userInputs }) => {
             />
           );
         })}
-        <input type='submit' value='Login' className='btn' />
+        <FormButton value='Login' />
       </form>
       <p>
         Don't have an account? <Link to='/auth/register'>Register</Link>
       </p>
     </div>
   );
+};
+
+Login.propTypes = {
+  userInputs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      placeholder: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default Login;

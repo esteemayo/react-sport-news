@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import FormInput from 'components/formInput/FormInput';
 import { createNews, reset } from 'features/news/newsSlice';
 
 import './form.css';
+import FormButton from 'components/formButton/FormButton';
 
 const initialState = {
   name: '',
@@ -99,10 +101,21 @@ const AddNews = ({ newsInputs }) => {
           onChange={(e) => handleChange(e)}
         />
 
-        <input type='submit' value='Add News' className='btn' />
+        <FormButton value='Add News' />
       </form>
     </div>
   );
+};
+
+AddNews.propTypes = {
+  newsInputs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default AddNews;
