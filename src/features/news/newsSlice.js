@@ -3,10 +3,10 @@ import * as newsAPI from 'services/sportService';
 
 export const getNews = createAsyncThunk(
   'news/getNews',
-  async (_, { rejectWithValue }) => {
+  async (page, { rejectWithValue }) => {
     try {
-      const { data } = await newsAPI.getSports();
-      return data.sports;
+      const { data } = await newsAPI.getSports(page);
+      return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -105,6 +105,8 @@ const initialState = {
   userNews: [],
   singleNews: {},
   editNewsItem: {},
+  currentPage: 1,
+  numberOfPages: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -116,6 +118,9 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => initialState,
+    setCurrentPage: (state, { payload }) => {
+      state.currentPage = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -125,7 +130,9 @@ export const newsSlice = createSlice({
       .addCase(getNews.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.news = payload;
+        state.news = payload.sports;
+        state.currentPage = payload.currentPage;
+        state.numberOfPages = payload.numberOfPages;
       })
       .addCase(getNews.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -258,6 +265,6 @@ export const newsSlice = createSlice({
   },
 });
 
-export const { reset } = newsSlice.actions;
+export const { reset, setCurrentPage } = newsSlice.actions;
 
 export default newsSlice.reducer;
