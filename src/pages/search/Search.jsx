@@ -21,7 +21,7 @@ const Search = () => {
   }, [dispatch, searchQuery]);
 
   if (news.length < 1) {
-    return <h3>No search result for {searchQuery}</h3>;
+    return <h3>No search result for "{searchQuery}"</h3>;
   }
 
   return (
