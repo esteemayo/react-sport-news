@@ -6,7 +6,7 @@ import Popup from 'components/popup/Popup';
 import './newsDashboard.css';
 
 const NewsDashboard = ({ _id: id, name, slug, onDelete }) => {
-  const [closePopup, setClosePopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(true);
 
   return (
     <div className='news-dashboard'>
@@ -16,14 +16,14 @@ const NewsDashboard = ({ _id: id, name, slug, onDelete }) => {
       <Link to={`/news/edit/${id}`}>
         <button className='btn-edit'>Edit News</button>
       </Link>
-      <button className='btn-delete' onClick={() => setClosePopup(false)}>
+      <button className='btn-delete' onClick={() => setShowPopup(false)}>
         Delete News
       </button>
-      {!closePopup && (
+      {!showPopup && (
         <Popup
           name={name}
           newsId={id}
-          onClose={setClosePopup}
+          onClose={setShowPopup}
           onDelete={onDelete}
         />
       )}
