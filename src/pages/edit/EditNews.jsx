@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'components/modal/Modal';
 import { editNews } from 'features/news/newsSlice';
 import TextArea from 'components/textarea/TextArea';
+import { getSportById } from 'services/sportService';
 import FormInput from 'components/formInput/FormInput';
-import { getEditNewsItem } from 'features/news/newsSlice';
 import FormButton from 'components/formButton/FormButton';
 import ImageUpload from 'components/imageUpload/ImageUpload';
 
@@ -29,10 +29,11 @@ const EditNews = () => {
     ...state.news,
   }));
 
+  const [singleNews, setSingleNews] = useState({});
   const [showmodal, setShowModal] = useState(false);
   const [values, setValues] = useState(initialState);
   const [imgPreview, setImgPreview] = useState(
-    editNewsItem.image ? editNewsItem.image : null
+    singleNews.image ? singleNews.image : null
   );
 
   const { name, date, time, detail } = values;
@@ -56,21 +57,27 @@ const EditNews = () => {
     };
 
     dispatch(editNews({ id, updatedNews, toast }));
-    navigate(`/news/${editNewsItem.slug}`);
+    navigate(`/news/${singleNews.slug}`);
   };
 
   useEffect(() => {
-    dispatch(getEditNewsItem(id));
-    setImgPreview(editNewsItem.image);
+    setImgPreview(singleNews.image);
     isError && toast.error(message);
-  }, [id, editNewsItem, isError, message, dispatch]);
+  }, [id, singleNews, isError, message]);
 
   useEffect(() => {
-    if (editNewsItem) {
-      const { name, detail, date, time } = editNewsItem;
-      setValues({ name, detail, date, time });
-    }
-  }, [editNewsItem]);
+    (async () => {
+      try {
+        const { data } = await getSportById(id);
+        const { name, detail, date, time } = data.sport;
+
+        setValues({ name, detail, date, time });
+        setSingleNews(data.sport);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [id]);
 
   return (
     <div>
