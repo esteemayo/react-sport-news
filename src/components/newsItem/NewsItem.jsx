@@ -1,4 +1,5 @@
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
@@ -31,6 +32,15 @@ const NewsItem = ({ name, slug, date, time, user, image }) => {
       </div>
     </div>
   );
+};
+
+NewsItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default NewsItem;
