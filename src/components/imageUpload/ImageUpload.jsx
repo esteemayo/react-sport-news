@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 
 import { editNews } from 'features/news/newsSlice';
 import { uploadImage } from 'services/imageService';
 import FormInput from 'components/formInput/FormInput';
+import FormButton from 'components/formButton/FormButton';
+
 import '../../pages/add/form.css';
 
 const ImageUpload = ({ id, values, setShowModal }) => {
@@ -44,7 +46,7 @@ const ImageUpload = ({ id, values, setShowModal }) => {
           onChange={(e) => setFile(e.target.files[0])}
         />
 
-        <input type='submit' value='Upload' className='btn' />
+        <FormButton value='Upload' />
       </form>
     </div>
   );
