@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Popup from 'components/popup/Popup';
@@ -28,6 +29,13 @@ const NewsDashboard = ({ _id: id, name, slug, onDelete }) => {
       )}
     </div>
   );
+};
+
+NewsDashboard.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default NewsDashboard;
