@@ -1,0 +1,126 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.popup-wrapper {
+  background-color: #fff;
+  width: 40%;
+  border-radius: 5px;
+}
+
+.popup-header {
+  background-color: #f0f4f8;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-header span {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.close-icon {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.popup-body {
+  background-color: transparent;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid lightgray;
+}
+
+.popup-body p {
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.popup-footer {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cancel-btn,
+.delete-btn {
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-transform: capitalize;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.cancel-btn {
+  background-color: #c6d1db;
+  color: #333;
+}
+
+.delete-btn {
+  background-color: #ff7f50;
+  color: #fff;
+}
+
+.cancel-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+  transform: translateX(3px);
+}
+
+@media only screen and (max-width: 68.75em) {
+  .popup-wrapper {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 56.25em) {
+  .popup-wrapper {
+    width: 60%;
+  }
+
+  .cancel-btn,
+  .delete-btn {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 40.625em) {
+  .popup-wrapper {
+    width: 70%;
+  }
+
+  .cancel-btn,
+  .delete-btn {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .popup-wrapper {
+    width: 90%;
+  }
+
+  .cancel-btn,
+  .delete-btn {
+    padding: 10px 25px;
+  }
+}

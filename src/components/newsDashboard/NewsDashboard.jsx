@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import Popup from 'components/popup/Popup';
 import './newsDashboard.css';
 
 const NewsDashboard = ({ _id: id, name, slug, onDelete }) => {
+  const [closePopup, setClosePopup] = useState(true);
+
   return (
     <div className='news-dashboard'>
       <h4>
@@ -10,9 +15,17 @@ const NewsDashboard = ({ _id: id, name, slug, onDelete }) => {
       <Link to={`/news/edit/${id}`}>
         <button className='btn-edit'>Edit News</button>
       </Link>
-      <button className='btn-delete' onClick={() => onDelete(id)}>
+      <button className='btn-delete' onClick={() => setClosePopup(false)}>
         Delete News
       </button>
+      {!closePopup && (
+        <Popup
+          name={name}
+          newsId={id}
+          onClose={setClosePopup}
+          onDelete={onDelete}
+        />
+      )}
     </div>
   );
 };
