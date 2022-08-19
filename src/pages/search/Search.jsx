@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import NewsItem from 'components/newsItem/NewsItem';
+import Spinner from 'components/spinner/Spinner';
 import { searchNews } from 'features/news/newsSlice';
+
+const NewsItem = lazy(() => import('components/newsItem/NewsItem'));
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -27,9 +29,11 @@ const Search = () => {
   return (
     <>
       <h1>Search Results for "{searchQuery}"</h1>
-      {news.map((item) => {
-        return <NewsItem key={item._id} {...item} />;
-      })}
+      <Suspense fallback={<Spinner />}>
+        {news.map((item) => {
+          return <NewsItem key={item._id} {...item} />;
+        })}
+      </Suspense>
       <Link to='/' className='back'>
         Go Back
       </Link>
