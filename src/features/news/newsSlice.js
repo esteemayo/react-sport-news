@@ -138,7 +138,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       })
       .addCase(getUserNews.pending, (state) => {
         state.isLoading = true;
@@ -153,7 +153,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       })
       .addCase(searchNews.pending, (state) => {
         state.isLoading = true;
@@ -167,7 +167,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       })
       .addCase(getSingleNews.pending, (state) => {
         state.isLoading = true;
@@ -181,7 +181,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       })
       .addCase(getEditNewsItem.pending, (state) => {
         state.isLoading = true;
@@ -195,7 +195,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       })
       .addCase(createNews.pending, (state) => {
         state.isLoading = true;
@@ -210,7 +210,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       })
       .addCase(editNews.pending, (state) => {
         state.isLoading = true;
@@ -232,7 +232,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       })
       .addCase(deleteNews.pending, (state) => {
         state.isLoading = true;
@@ -260,7 +260,7 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.message = payload;
+        state.message = payload.message;
       });
   },
 });
