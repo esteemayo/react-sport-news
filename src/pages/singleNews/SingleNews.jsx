@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import Spinner from 'components/spinner/Spinner';
-import DisqusThread from 'components/disqusThread/DisqusThread';
 import { getSingleNews, reset } from 'features/news/newsSlice';
+import DisqusThread from 'components/disqusThread/DisqusThread';
 
 import './singleNews.css';
 
