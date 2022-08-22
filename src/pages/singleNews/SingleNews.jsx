@@ -9,6 +9,7 @@ import Spinner from 'components/spinner/Spinner';
 import { getSingleNews, reset } from 'features/news/newsSlice';
 
 import './singleNews.css';
+import DisqusThread from 'components/disqusThread/DisqusThread';
 
 const SingleNews = () => {
   const { pathname } = useLocation();
@@ -31,26 +32,34 @@ const SingleNews = () => {
   }
 
   return (
-    <div className='single-news'>
-      <Link to='/news' className='back'>
-        Go Back
-      </Link>
-      <br />
-      <span>
-        <Moment format='yyyy-MM-DD'>{singleNews.date}</Moment> {singleNews.time}
-      </span>
-      <p>
-        <FaUser /> Posted By: <strong>{singleNews?.user?.username}</strong>
-      </p>
-      <h1>{singleNews.name}</h1>
-      <div className='image'>
-        <img
-          src={singleNews.image ? singleNews.image : '/images/hero.jpg'}
-          alt={singleNews.name}
-        />
+    <>
+      <div className='single-news'>
+        <Link to='/news' className='back'>
+          Go Back
+        </Link>
+        <br />
+        <span>
+          <Moment format='yyyy-MM-DD'>{singleNews.date}</Moment>{' '}
+          {singleNews.time}
+        </span>
+        <p>
+          <FaUser /> Posted By: <strong>{singleNews?.user?.username}</strong>
+        </p>
+        <h1>{singleNews.name}</h1>
+        <div className='image'>
+          <img
+            src={singleNews.image ? singleNews.image : '/images/hero.jpg'}
+            alt={singleNews.name}
+          />
+        </div>
+        <p>{singleNews.detail}</p>
       </div>
-      <p>{singleNews.detail}</p>
-    </div>
+      <DisqusThread
+        id={slug}
+        title={singleNews.name}
+        path={`/news/${singleNews.slug}`}
+      />
+    </>
   );
 };
 
