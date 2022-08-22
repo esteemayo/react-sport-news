@@ -1,4 +1,5 @@
 import http from './httpService';
+import { getFromStorage } from 'utils';
 
 const apiEndpoint = '/auth';
 const tokenKey = 'jwtToken';
@@ -6,4 +7,4 @@ const tokenKey = 'jwtToken';
 export const login = (credentials) =>
   http.post(`${apiEndpoint}/login`, credentials);
 
-export const getJwt = () => JSON.parse(localStorage.getItem(tokenKey))?.token;
+export const getJwt = () => getFromStorage(tokenKey)?.token;
