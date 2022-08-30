@@ -12,8 +12,6 @@ import FormInput from 'components/formInput/FormInput';
 import FormButton from 'components/formButton/FormButton';
 import ImageUpload from 'components/imageUpload/ImageUpload';
 
-import '../add/form.css';
-
 const initialState = {
   name: '',
   detail: '',
@@ -115,12 +113,7 @@ const EditNews = () => {
         <FormButton value='Update News' />
       </form>
       {imgPreview ? (
-        <img
-          src={imgPreview}
-          alt={editNewsItem.name}
-          width={100}
-          height={100}
-        />
+        <img className='img-preview' src={imgPreview} alt={editNewsItem.name} />
       ) : (
         <div>
           <p>No Image Available</p>
