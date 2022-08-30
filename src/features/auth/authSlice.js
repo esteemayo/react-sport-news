@@ -3,7 +3,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import * as authAPI from 'services/authService';
 import { register } from 'services/userService';
-import { getFromStorage, setToStorage, tokenKey } from 'utils/index';
+import {
+  getFromStorage,
+  removeFromStorage,
+  setToStorage,
+  tokenKey,
+} from 'utils/index';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -47,7 +52,7 @@ if (token) {
   const expiredToken = decodedToken.exp * 1000;
 
   if (new Date().getTime() > expiredToken) {
-    localStorage.clear();
+    removeFromStorage();
     initialState.user = null;
   }
 }
@@ -63,7 +68,7 @@ export const authSlice = createSlice({
       state.message = '';
     },
     setLogout: (state) => {
-      localStorage.clear();
+      removeFromStorage();
       state.user = null;
     },
   },
