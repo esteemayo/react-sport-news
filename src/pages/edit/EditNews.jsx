@@ -32,9 +32,7 @@ const EditNews = () => {
   const [singleNews, setSingleNews] = useState({});
   const [showmodal, setShowModal] = useState(false);
   const [values, setValues] = useState(initialState);
-  const [imgPreview, setImgPreview] = useState(
-    singleNews.image ? singleNews.image : null
-  );
+  const [imgPreview, setImgPreview] = useState(singleNews.image ?? null);
 
   const { name, date, time, detail } = values;
 
